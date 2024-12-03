@@ -22,7 +22,7 @@ class AboutBox:
         l3 = ttk.Label(frame, text='https://github.com/sivasankarankb/buckets')
         l3.grid(pady=(0,8))
 
-        lcopy = ttk.Label(frame, text='Copyright (C) 2020-2023 Sivasankaran K B')
+        lcopy = ttk.Label(frame, text='Copyright (C) 2020-2024 Sivasankaran K B')
         lcopy.grid(pady=(0,20))
 
         license_txt ='''\
