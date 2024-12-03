@@ -46,7 +46,7 @@ class ClientLogic:
 
         if response == None: return
         if 'application' not in response: return
-        if response['application'] != 'pyfs': return
+        if response['application'] != 'buckets': return
 
         self.__server_ok = True
         self.__server_name = response['servername']
@@ -286,7 +286,7 @@ class DownloadManager(ClientLogic):
 
         else: pathlib.Path(self.__progress_storage).unlink(missing_ok=True)
 
-class PyFSClient(ClientLogic):
+class BucketsClient(ClientLogic):
     def __init__(self, addr, progress_storage):
         ClientLogic.__init__(self, addr)
 

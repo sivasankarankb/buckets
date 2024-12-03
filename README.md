@@ -1,4 +1,4 @@
-# pyfileshare
+# Buckets
 An HTTP based file sharing application written in Python.
 
 The server application provides access to files and directories (folders) on
@@ -8,10 +8,10 @@ authentication are required.
 The client is used to view and download files.
 
 ## Installation
-To try pyfileshare:
+To try Buckets:
 
 1. Get a copy from the
-   [releases](https://github.com/sivasankarankb/pyfileshare/releases) page.
+   [releases](https://github.com/sivasankarankb/buckets/releases) page.
    
 2. Extract the code wherever you want.
 
@@ -22,12 +22,12 @@ To try pyfileshare:
    [virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
    with `venv` and enter it.
 
-5. Get the packages required by pyfileshare by running
+5. Get the packages required by Buckets by running
    `pip3 install -r requirements.txt` inside the code directory from a terminal.
 
 ## Setting up file sharing
 Sharing is done by allowing access to a directory on the computer.
-Open the `pyfs_server.py` file. This contains code of the server.
+Open the `buckets_server.py` file. This contains code of the server.
 Edit the line that says `shares = { ... }`.
 
 __Linux (Unix) sharing examples:__
@@ -62,7 +62,7 @@ Note the __double backslashes__ used inside the paths.
 
 ## Running the server
 
-Do `python3 pyfs_server.py` to run the server app on its own. You can also
+Do `python3 buckets_server.py` to run the server app on its own. You can also
 control the server from the _Server_ menu in the client.
 
 ## Running the client

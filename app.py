@@ -3,8 +3,8 @@
 import tkinter as tk
 from tkinter import ttk
 
-from pyfs_client import PyFSClient
-import pyfs_server
+from buckets_client import BucketsClient
+import buckets_server
 
 import file_browser
 import downloader
@@ -133,14 +133,14 @@ class Application:
 
         self.__tk['menu'] = self.__menubar
 
-        self.__server = pyfs_server.get_instance()
+        self.__server = buckets_server.get_instance()
 
         self.__prefs = preferences.get_instance()
         self.__prefs.load()
 
     def __set_title(self, title=''):
-        if title != '': title = 'pyfileshare - ' + title
-        else: title = 'pyfileshare'
+        if title != '': title = 'Buckets - ' + title
+        else: title = 'Buckets'
 
         self.__tk.title(title)
 
@@ -148,7 +148,7 @@ class Application:
         self.__tk.mainloop()
 
     def __get_client_for(self, addr):
-        self.__client = PyFSClient(addr, 'progress.shelf')
+        self.__client = BucketsClient(addr, 'progress.shelf')
         self.__downloader.set_client(self.__client)
         return self.__client
 

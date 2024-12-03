@@ -13,13 +13,13 @@ class AboutBox:
         win.columnconfigure(0, weight=1)
         win.rowconfigure(0, weight=1)
         
-        l1 = ttk.Label(frame, text='pyfileshare')
+        l1 = ttk.Label(frame, text='Buckets')
         l1.grid(pady=(0,8))
         
         l2 = ttk.Label(frame, text='Version v0.1.1')
         l2.grid(pady=(0,8))
 
-        l3 = ttk.Label(frame, text='https://github.com/sivasankarankb/pyfileshare')
+        l3 = ttk.Label(frame, text='https://github.com/sivasankarankb/buckets')
         l3.grid(pady=(0,8))
 
         lcopy = ttk.Label(frame, text='Copyright (C) 2020-2023 Sivasankaran K B')

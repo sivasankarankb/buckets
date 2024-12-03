@@ -13,7 +13,7 @@ import cherrypy
 # What paths to make available for sharing. Format is sharename: path.
 shares = {'siva': '/home/siva'}
 
-server_name = 'pyfileshare'
+server_name = 'buckets'
 server_listen_ip = '0.0.0.0'
 server_listen_port = 8080
 
@@ -32,7 +32,7 @@ def time_convert(seconds):
 @app.route('/')
 def welcome():
     return {
-       'status': 'ok', 'application': 'pyfs', 'version': 0.1,
+       'status': 'ok', 'application': 'buckets', 'version': 0.1,
        'chunkmax': file_chunk_size_max, 'chunkmin': file_chunk_size_min,
        'chunkdefault': file_chunk_size_default, 'servername': server_name
     }
