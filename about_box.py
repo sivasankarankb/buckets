@@ -16,7 +16,7 @@ class AboutBox:
         l1 = ttk.Label(frame, text='Buckets')
         l1.grid(pady=(0,8))
         
-        l2 = ttk.Label(frame, text='Version v0.1.1')
+        l2 = ttk.Label(frame, text='Version v0.2')
         l2.grid(pady=(0,8))
 
         l3 = ttk.Label(frame, text='https://github.com/sivasankarankb/buckets')
