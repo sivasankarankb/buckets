@@ -1,6 +1,8 @@
 # Buckets
 An HTTP based file sharing application written in Python.
 
+![Version 0.2.0 with file browser on left, download manager on right.](docs/buckets-0.2.0.png)
+
 The server application provides access to files and directories (folders) on
 a machine to anybody that can connect to it. No passwords or other
 authentication are required.
