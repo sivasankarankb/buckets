@@ -29,23 +29,27 @@ To try Buckets:
 
 ## Setting up file sharing
 Sharing is done by allowing access to a directory on the computer.
-Open the `buckets_server.py` file. This contains code of the server.
-Edit the line that says `shares = { ... }`.
+Open the `buckets_server.json` file. This contains the server configuration.
+Edit the `shares` object to choose which directories are available.
 
 __Linux (Unix) sharing examples:__
 
 Suppose you want to add `/home/user/` with the share name `files`:
 
-```python
-shares = {'files': '/home/user/'}
+```json
+{
+   "shares": {"files": "/home/user/"}
+}
 ```
 
 Let's add `/var/www/html` under the name `mirror` to this:
 
-```python
-shares = {
-     'files': '/home/user/',
-     'mirror': '/var/www/html/'
+```json
+{
+   "shares": {
+      "files": "/home/user/",
+      "mirror": "/var/www/html/"
+   }
 }
 ```
 
@@ -53,14 +57,18 @@ __Windows sharing example:__
 
 Suppose you want to share the E Drive and your Downloads folder:
 
-```python
-shares = {
-    'e_drive': 'E:\\',
-    'downloads': 'C:\\Users\\Me\\Downloads\\'
+```json
+{
+   "shares": {
+      "e_drive": "E:\\",
+      "downloads": "C:\\Users\\Me\\Downloads\\"
+   }
 }
 ```
 
-Note the __double backslashes__ used inside the paths.
+Note the __double backslashes__ used inside JSON strings. The other available
+settings are `server_name`, `server_listen_ip`, `server_listen_port`,
+`file_chunk_size_default`, `file_chunk_size_min`, and `file_chunk_size_max`.
 
 ## Running the server
 

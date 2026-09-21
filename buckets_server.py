@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import io
+import json
 import time
 import pathlib
 import hashlib
@@ -8,20 +9,61 @@ import hashlib
 import bottle
 import cherrypy
 
-# -- User configurable options --
 
-# What paths to make available for sharing. Format is sharename: path.
-shares = {'siva': '/home/siva'}
+config_file = pathlib.Path(__file__).with_name('buckets_server.json')
+config_defaults = {
+    'shares': {'siva': '/home/siva'},
+    'server_name': 'buckets',
+    'server_listen_ip': '0.0.0.0',
+    'server_listen_port': 8080,
+    'file_chunk_size_default': 1024 * 1024,
+    'file_chunk_size_min': 512,
+    'file_chunk_size_max': 32 * 1024 * 1024
+}
 
-server_name = 'buckets'
-server_listen_ip = '0.0.0.0'
-server_listen_port = 8080
+def load_config(path):
+    settings = config_defaults.copy()
 
-file_chunk_size_default = 1024 * 1024
-file_chunk_size_min = 512
-file_chunk_size_max = 32 * 1024 * 1024
+    try:
+        with path.open(encoding='utf-8') as handle:
+            configured = json.load(handle)
+    except FileNotFoundError:
+        return settings
+    except (OSError, json.JSONDecodeError) as error:
+        raise RuntimeError('Could not read server config {}: {}'.format(path, error))
 
-# -- End of user configurable options --
+    if not isinstance(configured, dict):
+        raise ValueError('Server config must contain a JSON object')
+
+    settings.update(configured)
+
+    if not isinstance(settings['shares'], dict):
+        raise ValueError('Server config "shares" must be an object')
+    if not all(isinstance(name, str) and isinstance(share, str)
+               for name, share in settings['shares'].items()):
+        raise ValueError('Server config "shares" must map names to paths')
+    if not isinstance(settings['server_name'], str):
+        raise ValueError('Server config "server_name" must be a string')
+    if not isinstance(settings['server_listen_ip'], str):
+        raise ValueError('Server config "server_listen_ip" must be a string')
+    integer_settings = (
+        'server_listen_port', 'file_chunk_size_default',
+        'file_chunk_size_min', 'file_chunk_size_max'
+    )
+    if not all(isinstance(settings[name], int) for name in integer_settings):
+        raise ValueError('Server numeric settings must be integers')
+
+    return settings
+
+config = load_config(config_file)
+shares = config['shares']
+server_name = config['server_name']
+server_listen_ip = config['server_listen_ip']
+server_listen_port = config['server_listen_port']
+file_chunk_size_default = config['file_chunk_size_default']
+file_chunk_size_min = config['file_chunk_size_min']
+file_chunk_size_max = config['file_chunk_size_max']
+
 
 app = bottle.Bottle()
 
