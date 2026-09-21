@@ -1,6 +1,6 @@
 {
     "shares": {
-        "D_drive": "D://"
+        "siva": "/home/siva"
     },
     "server_name": "buckets",
     "server_listen_ip": "0.0.0.0",

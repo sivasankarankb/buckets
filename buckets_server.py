@@ -9,7 +9,6 @@ import hashlib
 import bottle
 import cherrypy
 
-# -- User configurable options --
 
 config_file = pathlib.Path(__file__).with_name('buckets_server.json')
 config_defaults = {
@@ -65,7 +64,6 @@ file_chunk_size_default = config['file_chunk_size_default']
 file_chunk_size_min = config['file_chunk_size_min']
 file_chunk_size_max = config['file_chunk_size_max']
 
-# -- End of user configurable options --
 
 app = bottle.Bottle()
 
